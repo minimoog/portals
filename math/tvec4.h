@@ -1,5 +1,5 @@
 /* Copyright (c) 2008, Antonie Jovanoski
- *	
+ *
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ struct TVec4
     TVec4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
     TVec4(const float* xyzw) : x(xyzw[0]), y(xyzw[1]), z(xyzw[2]), w(xyzw[3]) {}
     TVec4(const TVec3& u) : x(u.x), y(u.y), z(u.z), w(1.0f) {}
-	
+
     TVec4& operator *=(const float& s)
     {
         x*= s;
@@ -56,9 +56,9 @@ struct TVec4
     }
 
     TVec4 operator -() const
-	{
+    {
         return TVec4(-x, -y, -z, -w);
-	}
+    }
 
     float& operator [](int i)
     {
@@ -70,12 +70,12 @@ struct TVec4
         return vec_array[i];
     }
 
-	union {
+    union {
         struct {
-            float x,y,z,w;          
+            float x,y,z,w;
         };
         struct {
-            float s,t,r,q;          
+            float s,t,r,q;
         };
         float vec_array[4];
     };

@@ -1,5 +1,5 @@
 /* Copyright (c) 2008, Antonie Jovanoski
- *	
+ *
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,69 +27,69 @@ struct TVec3
     TVec3(float x, float y, float z) : x(x), y(y), z(z) { }
     TVec3(const float* xyz) : x(xyz[0]), y(xyz[1]), z(xyz[2]) { }
     TVec3(const TVec2& u) : x(u.x), y(u.y), z(1.0f) { }
-	
+
     TVec3& operator * (const float& s)
-	{
-		x *= s;
-		y *= s;
-		z *= s;
-		return *this;
-	}
+    {
+        x *= s;
+        y *= s;
+        z *= s;
+        return *this;
+    }
 
     TVec3 operator - () const
-	{
+    {
         return TVec3(-x, -y, -z);
-	}
+    }
 
     TVec3& operator -= (const TVec3& u)
-	{
-		x -= u.x;
-		y -= u.y;
-		z -= u.z;
-		return *this;
-	}
+    {
+        x -= u.x;
+        y -= u.y;
+        z -= u.z;
+        return *this;
+    }
 
     TVec3& operator += (const TVec3& u)
-	{
-		x += u.x;
-		y += u.y;
-		z += u.z;
-		return *this;
-	}
+    {
+        x += u.x;
+        y += u.y;
+        z += u.z;
+        return *this;
+    }
 
-	float normalize()
-	{
-		float norm = 1 / sqrtf(x * x + y * y + z * z);
-		x *= norm;
-		y *= norm;
-		z *= norm;
-		return norm;
-	}
+    float normalize()
+    {
+        float norm = 1 / sqrtf(x * x + y * y + z * z);
+        x *= norm;
+        y *= norm;
+        z *= norm;
+        return norm;
+    }
 
-	float norm() const
-	{
-		return sqrtf(x * x + y * y + z * z);
-	}
+    float norm() const
+    {
+        return sqrtf(x * x + y * y + z * z);
+    }
 
-	float& operator[] (int i)
-	{
-		return vec_array[i];
-	}
+    float& operator[] (int i)
+    {
+        return vec_array[i];
+    }
 
-	const float operator[] (int i) const
-	{
-		return vec_array[i];
-	}
+    const float operator[] (int i) const
+    {
+        return vec_array[i];
+    }
 
-	union {
-		struct {
-			float x, y, z;
-		};
-		struct {
-			float s, t, r;
-		};
-		float vec_array[3];
-	};
+    union {
+        struct {
+            float x, y, z;
+        };
+        struct {
+            float s, t, r;
+        };
+        float vec_array[3];
+    };
 };
 
 inline const TVec3 operator + (const TVec3& u, const TVec3& v)

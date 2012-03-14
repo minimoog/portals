@@ -1,5 +1,5 @@
 /* Copyright (c) 2008, Antonie Jovanoski
- *	
+ *
  * All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,55 +19,55 @@
 #ifndef TVEC2_H
 #define TVEC2_H
 
-#include "math.h"
+#include <math.h>
 
 struct TVec2
 {
     TVec2() : x(0.0f), y(0.0f) { }
     TVec2(float x, float y) : x(x), y(y) { }
     TVec2(const float* xy) : x(xy[0]), y(xy[1]) { }
-	
+
 
     TVec2& operator *= (const float& lambda)
-	{
-		x *= lambda;
-		y *= lambda;
-		return *this;
-	}
+    {
+        x *= lambda;
+        y *= lambda;
+        return *this;
+    }
 
     TVec2& operator -= (const TVec2& u)
-	{
-		x -= u.x;
-		y -= u.y;
-		return *this;
-	}
+    {
+        x -= u.x;
+        y -= u.y;
+        return *this;
+    }
 
     TVec2& operator += (const TVec2& u)
-	{
-		x += u.x;
-		y += u.y;
-		return *this;
-	}
+    {
+        x += u.x;
+        y += u.y;
+        return *this;
+    }
 
-	const float operator[] (int i) const
-	{
-		return vec_array[i];
-	}
+    const float operator[] (int i) const
+    {
+        return vec_array[i];
+    }
 
-	float length() const
-	{
-		return sqrtf(x * x + y * y);
-	}
+    float length() const
+    {
+        return sqrtf(x * x + y * y);
+    }
 
-	union {
-		struct {
-			float x, y;
-		};
-		struct {
-			float s, t;
-		};
-		float vec_array[2];
-	};
+    union {
+        struct {
+            float x, y;
+        };
+        struct {
+            float s, t;
+        };
+        float vec_array[2];
+    };
 };
 
 inline const TVec2 operator + (const TVec2& u, const TVec2& v)
@@ -97,15 +97,15 @@ inline const TVec2 operator * (const TVec2& u, const TVec2& v)
 
 inline TVec2& scale(TVec2& u, float s)
 {
-	u.x *= s;
-	u.y *= s;
-	return u;
+    u.x *= s;
+    u.y *= s;
+    return u;
 }
 
 inline TVec2& normalize(TVec2& u)
 {
-	float norm = sqrtf(u.x * u.x + u.y * u.y);
-	return scale(u, 1.0f / norm);
+    float norm = sqrtf(u.x * u.x + u.y * u.y);
+    return scale(u, 1.0f / norm);
 }
 
 #endif //TVEC2_H
