@@ -8,7 +8,7 @@ class TextureManager
 {
 public:
     TextureManager(QGLWidget *glWidget);
-    GLuint loadTexture(const QString& filename);
+    GLuint loadTexture(const std::wstring& filename);
     void release();
 
 private:

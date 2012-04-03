@@ -7,14 +7,16 @@ TextureManager::TextureManager(QGLWidget *glWidget)
 {
 }
 
-GLuint TextureManager::loadTexture(const QString &filename)
+GLuint TextureManager::loadTexture(const std::wstring &filename)
 {
-    if (m_textures.contains(filename)) {
-        return m_textures[filename];
+    QString fn = QString::fromStdWString(filename);
+
+    if (m_textures.contains(fn)) {
+        return m_textures[fn];
     } else {
         QImage img;
 
-        if (img.load(filename)) {
+        if (img.load(fn)) {
             QImage imgTexture = QGLWidget::convertToGLFormat(img);
 
             GLuint texture;
@@ -32,7 +34,7 @@ GLuint TextureManager::loadTexture(const QString &filename)
                          GL_UNSIGNED_BYTE,
                          imgTexture.bits());
 
-            m_textures[filename] = texture;
+            m_textures[fn] = texture;
         }
     }
 
