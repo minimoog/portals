@@ -1,6 +1,7 @@
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 
+#include <GL/glew.h>
 #include <QHash>
 #include <QGLWidget>
 
