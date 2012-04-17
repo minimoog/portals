@@ -1,7 +1,10 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include <GL/glew.h>
 #include <QGLWidget>
+#include "texturemanager.h"
+#include "scene.h"
 
 namespace Ui {
 class Widget;
@@ -21,6 +24,8 @@ protected:
     void paintGL();
 
 private:
+    TextureManager m_textureManager;
+    Scene m_scene;
 };
 
 #endif // WIDGET_H

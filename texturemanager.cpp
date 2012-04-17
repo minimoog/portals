@@ -9,6 +9,8 @@ TextureManager::TextureManager(QGLWidget *glWidget)
 
 GLuint TextureManager::loadTexture(const std::wstring &filename)
 {
+    m_glWidget->makeCurrent();
+
     QString fn = QString::fromStdWString(filename);
 
     if (m_textures.contains(fn)) {
@@ -43,6 +45,8 @@ GLuint TextureManager::loadTexture(const std::wstring &filename)
 
 void TextureManager::release()
 {
+    m_glWidget->makeCurrent();
+
     QHashIterator<QString, GLuint> iter(m_textures);
 
     while (iter.hasNext()) {
