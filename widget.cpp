@@ -17,7 +17,7 @@ void Widget::initializeGL()
     glClearColor(1.0, 0.0, 0.0, 1.0);
     glEnable(GL_DEPTH_TEST);
 
-    m_scene.loadProc(std::wstring(L"level.proc"), this, m_textureManager);
+    m_scene.loadProc(std::wstring(L"./data/level.proc"), this, m_textureManager);
 
 }
 

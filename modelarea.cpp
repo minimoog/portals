@@ -21,7 +21,7 @@ bool ModelArea::readFromFile(std::wifstream &file, TextureManager &tm)
         Surface surface;
 
         std::wstring textureName = ProcUtil::ProcGetNextString(file);
-        // ### tex extension append ???
+        textureName += L".dds";
 
         surface.texture = tm.loadTexture(textureName);
 

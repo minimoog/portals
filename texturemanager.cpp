@@ -9,35 +9,17 @@ TextureManager::TextureManager(QGLWidget *glWidget)
 
 GLuint TextureManager::loadTexture(const std::wstring &filename)
 {
-    m_glWidget->makeCurrent();
-
     QString fn = QString::fromStdWString(filename);
 
     if (m_textures.contains(fn)) {
         return m_textures[fn];
     } else {
-        QImage img;
+        GLuint textureid = m_glWidget->bindTexture(fn);
 
-        if (img.load(fn)) {
-            QImage imgTexture = QGLWidget::convertToGLFormat(img);
+        if (textureid)
+            m_textures[fn] = textureid;
 
-            GLuint texture;
-
-            glGenTextures(1, &texture);
-            glBindTexture(GL_TEXTURE_2D, texture);
-
-            glTexImage2D(GL_TEXTURE_2D,
-                         0,
-                         GL_RGBA,
-                         imgTexture.width(),
-                         imgTexture.height(),
-                         0,
-                         GL_RGBA,
-                         GL_UNSIGNED_BYTE,
-                         imgTexture.bits());
-
-            m_textures[fn] = texture;
-        }
+        return textureid;
     }
 
     return 0;
@@ -45,15 +27,13 @@ GLuint TextureManager::loadTexture(const std::wstring &filename)
 
 void TextureManager::release()
 {
-    m_glWidget->makeCurrent();
-
     QHashIterator<QString, GLuint> iter(m_textures);
 
     while (iter.hasNext()) {
         iter.next();
 
-        GLuint texture = iter.value();
+        GLuint textureid = iter.value();
 
-        glDeleteTextures(1, &texture);
+        m_glWidget->deleteTexture(textureid);
     }
 }
