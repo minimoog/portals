@@ -1,11 +1,11 @@
-attribute highp vec3 vertexPosition;
-attribute highp vec2 vertexTexCoord;
-attribute highp vec3 vertexNormal;
+attribute vec3 vertexPosition;
+attribute vec2 vertexTexCoord;
+//attribute vec3 vertexNormal;
 
-uniform highp mat4 viewMatrix;
-uniform highp mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 projectionMatrix;
 
-varying highp vec2 texCoordOutput;
+varying vec2 texCoordOutput;
 
 void main(void)
 {
