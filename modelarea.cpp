@@ -77,10 +77,10 @@ void ModelArea::setProgram(GLuint program)
 
     glUseProgram(program);
 
-    m_posAttribIndex = glGetAttribLocation(m_program, "pos");
-    m_texAttribIndex = glGetAttribLocation(m_program, "tex");
-    m_normalAttribIndex = glGetAttribLocation(m_program, "normal");
-    m_texUniform = glGetUniformLocation(m_program, "sampler");
+    m_posAttribIndex = glGetAttribLocation(m_program, "vertexPosition");
+    m_texAttribIndex = glGetAttribLocation(m_program, "vertexTexCoord");
+    //m_normalAttribIndex = glGetAttribLocation(m_program, "vertexNormal");
+    m_texUniform = glGetUniformLocation(m_program, "texture");
 }
 
 void ModelArea::render()
