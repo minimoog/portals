@@ -21,6 +21,8 @@ public:
     void render(Kamera& camera);
     void release();
 
+    void setProgram(GLuint program);
+
 private:
     std::vector<ModelArea> m_areas;
     BspTree m_nodes;

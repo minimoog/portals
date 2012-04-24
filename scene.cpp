@@ -149,6 +149,14 @@ void Scene::render(Kamera& kamera)
     }
 }
 
+void Scene::setProgram(GLuint program)
+{
+    //This is setting same programs for every model and surfaces... Just as example
+
+    for (int i = 0; i < m_areas.size(); ++i)
+        m_areas[i].setProgram(program);
+}
+
 void Scene::release()
 {
     std::vector<ModelArea>::iterator it;
