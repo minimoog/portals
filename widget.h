@@ -17,7 +17,10 @@ class Widget : public QGLWidget
 public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
-    
+
+    static void checkShader(GLuint shader);
+    static void checkProgram(GLuint program);
+
 protected:
     void initializeGL();
     void resizeGL(int w, int h);
