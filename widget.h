@@ -5,6 +5,7 @@
 #include <QGLWidget>
 #include "texturemanager.h"
 #include "scene.h"
+#include "kamera.h"
 
 namespace Ui {
 class Widget;
@@ -20,6 +21,7 @@ public:
 
     static void checkShader(GLuint shader);
     static void checkProgram(GLuint program);
+    static void glError(const char *file, int line);
 
 protected:
     void initializeGL();
@@ -29,6 +31,9 @@ protected:
 private:
     TextureManager m_textureManager;
     Scene m_scene;
+    GLint m_ViewMatrix;
+    GLint m_ProjectionMatrix;
+    Kamera m_kamera;
 };
 
 #endif // WIDGET_H
