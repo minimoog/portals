@@ -1,6 +1,6 @@
 uniform sampler2D texture;
 
-varying vec2 texCoordOutput;
+in vec2 texCoordOutput;
 
 void main(void)
 {
