@@ -55,6 +55,7 @@ void Widget::initializeGL()
 
     glBindAttribLocation(program, 0, "vertexPosition");
     glBindAttribLocation(program, 1, "vertexTexCoord");
+    glBindAttribLocation(program, 2, "vertexNormal");
 
     glLinkProgram(program);
     checkProgram(program);
@@ -75,11 +76,15 @@ void Widget::initializeGL()
     m_kamera.setPerspectiveViewFOV(float(3.14 * 0.25), float(width()) / float(height()), 0.1f, 5000.0f);
 
     glUniformMatrix4fv(m_ProjectionMatrix, 1, GL_FALSE, m_kamera.getProjMatrix());
+
+    glViewport(0, 0, width(), height());
+
+    //glFrontFace(GL_CW);
 }
 
 void Widget::paintGL()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
 
     glUniformMatrix4fv(m_ViewMatrix, 1, GL_FALSE, m_kamera.getViewMatrix().mat_array);
 
@@ -90,7 +95,12 @@ void Widget::paintGL()
 
 void Widget::resizeGL(int w, int h)
 {
+    m_kamera.setPerspectiveViewFOV(float(3.14 * 0.25), float(w) / float(h), 0.1f, 5000.0f);
+    glUniformMatrix4fv(m_ProjectionMatrix, 1, GL_FALSE, m_kamera.getProjMatrix());
 
+    glViewport(0, 0, w, h);
+
+    updateGL();
 }
 
 Widget::~Widget()

@@ -64,11 +64,9 @@ bool ModelArea::readFromFile(std::wifstream &file, TextureManager &tm)
 
         delete []vertices;
         delete []indexes;
-
-        return true;
     }
 
-    return false;
+    return true;
 }
 
 void ModelArea::setProgram(GLuint program)
@@ -79,7 +77,7 @@ void ModelArea::setProgram(GLuint program)
 
     m_posAttribIndex = glGetAttribLocation(m_program, "vertexPosition");
     m_texAttribIndex = glGetAttribLocation(m_program, "vertexTexCoord");
-    //m_normalAttribIndex = glGetAttribLocation(m_program, "vertexNormal");
+    m_normalAttribIndex = glGetAttribLocation(m_program, "vertexNormal");
     m_texUniform = glGetUniformLocation(m_program, "texture");
 
     glUniform1i(m_texUniform, 0);
@@ -97,11 +95,11 @@ void ModelArea::render()
             glBindBuffer(GL_ARRAY_BUFFER, m_surfaces[i].vertexBuffer);
             glVertexAttribPointer(m_posAttribIndex, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(0));
             glVertexAttribPointer(m_texAttribIndex, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(3 * sizeof(float)));
-            //glVertexAttribPointer(m_normalAttribIndex, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(5 * sizeof(float)));
+            glVertexAttribPointer(m_normalAttribIndex, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(5 * sizeof(float)));
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_surfaces[i].indexBuffer);
 
-            glDrawElements(GL_TRIANGLES, m_surfaces[i].numIndexes, GL_UNSIGNED_BYTE, 0);
+            glDrawElements(GL_TRIANGLES, m_surfaces[i].numIndexes, GL_UNSIGNED_INT, 0);
 
         }
 
