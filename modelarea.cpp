@@ -81,6 +81,8 @@ void ModelArea::setProgram(GLuint program)
     m_texAttribIndex = glGetAttribLocation(m_program, "vertexTexCoord");
     //m_normalAttribIndex = glGetAttribLocation(m_program, "vertexNormal");
     m_texUniform = glGetUniformLocation(m_program, "texture");
+
+    glUniform1i(m_texUniform, 0);
 }
 
 void ModelArea::render()
@@ -89,12 +91,13 @@ void ModelArea::render()
 
     if (!m_rendered) {
         for (int i = 0; i < m_surfaces.size(); ++i) {
-            glUniform1i(m_texUniform, GL_TEXTURE0);
+
+            glBindTexture(GL_TEXTURE_2D, m_surfaces[i].texture);
 
             glBindBuffer(GL_ARRAY_BUFFER, m_surfaces[i].vertexBuffer);
             glVertexAttribPointer(m_posAttribIndex, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(0));
             glVertexAttribPointer(m_texAttribIndex, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(3 * sizeof(float)));
-            glVertexAttribPointer(m_normalAttribIndex, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(5 * sizeof(float)));
+            //glVertexAttribPointer(m_normalAttribIndex, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), BUFFER_OFFSET(5 * sizeof(float)));
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_surfaces[i].indexBuffer);
 
