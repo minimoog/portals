@@ -25,7 +25,7 @@ void Portal::clipPortal(TPlane &plane)
 
     for (size_t i = 0; i < m_clippedPoints.size() - 1; ++i) {
         TVec3 vp = m_clippedPoints[i];
-        TVec3 vn = m_clippedPoints[i + i];
+        TVec3 vn = m_clippedPoints[i + 1];
         TVec4 pl = plane.getPlaneVector();
 
         float lDotVp = vp.x * pl.x + vp.y * pl.y + vp.z * pl.z + pl.w;
