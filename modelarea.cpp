@@ -21,7 +21,12 @@ bool ModelArea::readFromFile(std::wifstream &file, TextureManager &tm)
         Surface surface;
 
         std::wstring textureName = ProcUtil::ProcGetNextString(file);
+
+#ifdef Q_WS_X11
+        textureName += L".png";
+#else
         textureName += L".dds";
+#endif
 
         surface.texture = tm.loadTexture(textureName);
 

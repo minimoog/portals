@@ -14,7 +14,15 @@ GLuint TextureManager::loadTexture(const std::wstring &filename)
     if (m_textures.contains(fn)) {
         return m_textures[fn];
     } else {
+
+#ifdef Q_WS_X11
+        QImage image;
+        image.load(fn);
+
+        GLuint textureid = m_glWidget->bindTexture(image);
+#else
         GLuint textureid = m_glWidget->bindTexture(fn);
+#endif
 
         if (textureid)
             m_textures[fn] = textureid;
