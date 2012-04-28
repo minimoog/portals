@@ -27,6 +27,7 @@ protected:
     void initializeGL();
     void resizeGL(int w, int h);
     void paintGL();
+    void keyPressEvent(QKeyEvent *);
 
 private:
     TextureManager m_textureManager;

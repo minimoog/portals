@@ -1,6 +1,7 @@
 #include "widget.h"
 #include <QtDebug>
 #include <QFile>
+#include <QKeyEvent>
 
 Widget::Widget(QWidget *parent) :
     QGLWidget(parent), m_textureManager(this)
@@ -18,6 +19,7 @@ void Widget::initializeGL()
 {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
 
     m_scene.loadProc(std::wstring(L"./data/level.proc"), this, m_textureManager);
 
@@ -78,13 +80,11 @@ void Widget::initializeGL()
     glUniformMatrix4fv(m_ProjectionMatrix, 1, GL_FALSE, m_kamera.getProjMatrix());
 
     glViewport(0, 0, width(), height());
-
-    //glFrontFace(GL_CW);
 }
 
 void Widget::paintGL()
 {
-    glClear(GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUniformMatrix4fv(m_ViewMatrix, 1, GL_FALSE, m_kamera.getViewMatrix().mat_array);
 
@@ -101,6 +101,39 @@ void Widget::resizeGL(int w, int h)
     glViewport(0, 0, w, h);
 
     updateGL();
+}
+
+void Widget::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_Left:
+        m_kamera.rotateYY(- 0.01);
+        updateGL();
+        break;
+
+    case Qt::Key_Right:
+        m_kamera.rotateYY(0.01);
+        updateGL();
+        break;
+
+    case Qt::Key_Up:
+        m_kamera.moveForward(3.0f);
+        updateGL();
+        break;
+
+    case Qt::Key_Down:
+        m_kamera.moveForward(-3.0f);
+        updateGL();
+        break;
+
+    case Qt::Key_L:
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        updateGL();
+        break;
+
+    default:
+        QWidget::keyPressEvent(event);
+    }
 }
 
 Widget::~Widget()
