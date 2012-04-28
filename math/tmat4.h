@@ -36,7 +36,7 @@ struct TMat4
 
     const TVec4 col(const int i) const;
     const TVec4 row(const int i) const;
-    const float operator() (const int i, const int j) const;
+    float operator() (const int i, const int j) const;
     float& operator() (const int i, const int j);
     void set_col(int i, const TVec4& v);
     void set_row(int i, const TVec4& v);

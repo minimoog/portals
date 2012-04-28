@@ -16,7 +16,7 @@ public:
     Scene();
     ~Scene();
 
-    bool loadProc(const std::wstring& filename, QGLWidget *glwidget, TextureManager& texManager);
+    bool loadProc(const char * filename, QGLWidget *glwidget, TextureManager& texManager);
     void renderRecursive(int area, Portal& throughPortal, Kamera& kamera);
     void render(Kamera& camera);
     void release();

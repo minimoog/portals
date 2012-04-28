@@ -76,7 +76,7 @@ struct TVec3
         return vec_array[i];
     }
 
-    const float operator[] (int i) const
+    float operator[] (int i) const
     {
         return vec_array[i];
     }

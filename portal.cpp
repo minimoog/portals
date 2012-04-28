@@ -1,4 +1,5 @@
 #include "portal.h"
+#include <algorithm>
 #include "procutil.h"
 
 Portal::Portal()

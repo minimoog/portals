@@ -49,7 +49,7 @@ struct TVec2
         return *this;
     }
 
-    const float operator[] (int i) const
+    float operator[] (int i) const
     {
         return vec_array[i];
     }

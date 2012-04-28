@@ -21,7 +21,7 @@ void Widget::initializeGL()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
-    m_scene.loadProc(std::wstring(L"./data/level.proc"), this, m_textureManager);
+    m_scene.loadProc("./data/level.proc", this, m_textureManager);
 
     // shader mader
     GLuint program = glCreateProgram();

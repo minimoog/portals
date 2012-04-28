@@ -1,4 +1,5 @@
 #include "procutil.h"
+#include <sstream>
 
 std::wstring ProcUtil::ProcGetNextValue(std::wifstream& file)
 {
@@ -15,7 +16,7 @@ std::wstring ProcUtil::ProcGetNextValue(std::wifstream& file)
             return s;
         }
     }
-    return false;
+    return s;
 }
 
 std::wstring ProcUtil::ProcGetNextString(std::wifstream& file)
@@ -27,11 +28,18 @@ std::wstring ProcUtil::ProcGetNextString(std::wifstream& file)
 
 float ProcUtil::ProcGetNextFloat(std::wifstream& file)
 {
-    return float(_wtof(ProcGetNextValue(file).c_str()));
+    float result;
+    std::wstringstream(ProcGetNextValue(file)) >> result;
+
+    return result;
 }
 
 int ProcUtil::ProcGetNextInt(std::wifstream& file)
 {
-    return _wtoi(ProcGetNextValue(file).c_str());
+    int result;
+
+    std::wstringstream(ProcGetNextValue(file)) >> result;
+
+    return result;
 }
 

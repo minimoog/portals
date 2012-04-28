@@ -193,9 +193,9 @@ static inline float det3x3(float a1, float a2, float a3,
 // TO BE DONE
 //*************************************************
 
-TMat3& invert(TMat3& B, const TMat3& A)
+TMat3& invert(TMat3& B, const TMat3& /* A */)
 {
     //TO BE DONE
 
-    return TMat3();
+    return B;
 }

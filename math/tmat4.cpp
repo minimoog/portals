@@ -80,7 +80,7 @@ const TVec4 TMat4::row(const int i) const
 // returns (i, j) element
 //---------------------------------------------------------------
 
-const float TMat4::operator ()(const int i, const int j) const
+float TMat4::operator ()(const int i, const int j) const
 {
     return mat_array[4*i+j];
 }
@@ -419,7 +419,7 @@ TMat4& transpose(TMat4& B, const TMat4& A)
     return B;
 }
 
-TMat4& invert(TMat4& B, const TMat4& A)
+TMat4& invert(TMat4& B, const TMat4& /* A */)
 {
     //sometime, some day will be coded
     return B;

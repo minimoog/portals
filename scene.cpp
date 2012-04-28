@@ -1,4 +1,6 @@
 #include "scene.h"
+#include <fstream>
+#include <string>
 #include "procutil.h"
 
 Scene::Scene()
@@ -9,7 +11,7 @@ Scene::~Scene()
 {
 }
 
-bool Scene::loadProc(const std::wstring &filename, QGLWidget *glwidget, TextureManager &texManager)
+bool Scene::loadProc(const char * filename, QGLWidget *glwidget, TextureManager &texManager)
 {
     std::wifstream file(filename);
     std::wstring s;
