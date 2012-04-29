@@ -40,12 +40,6 @@ TVec3& cross(TVec3& u, const TVec3& v, const TVec3& w)
 	return u;
 }
 
-float& dot(float& u, const TVec3& v, const TVec3& w)
-{
-	u = v.x * w.x + v.y * w.y + v.z * w.z;
-	return u;
-}
-
 float dot(const TVec3& v, const TVec3& w)
 {
 	return v.x * w.x + v.y * w.y + v.z * w.z;

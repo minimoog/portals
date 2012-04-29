@@ -182,7 +182,7 @@ TQuat& TMat4::get_rot(TQuat &q) const
 void TMat4::set_rot(const TQuat &q)
 {
     TMat3 m;
-    q.ToMatrix(m);
+    q.toMatrix(m);
     set_rot(m);
 }
 

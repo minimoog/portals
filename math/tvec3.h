@@ -102,6 +102,7 @@ inline const TVec3 operator - (const TVec3& u, const TVec3& v)
     return TVec3(u.x - v.x, u.y - v.y, u.z - v.z);
 }
 
+/* cross product */
 inline const TVec3 operator ^ (const TVec3& u, const TVec3& v)
 {
     return TVec3(u.y * v.z - u.z * v.y, u.z * v.x - u.x * v.z, u.x * v.y - u.y * v.x);
@@ -125,7 +126,6 @@ inline const TVec3 operator * (const TVec3& u, const TVec3& v)
 TVec3& scale(TVec3& u, const float s);
 TVec3& normalize(TVec3& u);
 TVec3& cross(TVec3& u, const TVec3& v, const TVec3& w);
-float& dot(float& u, const TVec3& v, const TVec3& w);
 float dot(const TVec3& v, const TVec3& w);
 TVec3& sub(TVec3& u, const TVec3& v, const TVec3& w);
 TVec3& add(TVec3& u, const TVec3& v, const TVec3& w);

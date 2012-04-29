@@ -45,7 +45,6 @@ public:
     TVec4& getPlaneVector() { return m_planeVector; }
 
 private:
-
     TVec4 m_planeVector;	//normal, plus D
 };
 

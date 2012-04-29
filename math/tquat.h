@@ -39,7 +39,7 @@ struct TQuat
     void normalize();
     void multQuat(const TQuat& q);
     void fromMatrix(const TMat3& mat);
-    void ToMatrix(TMat3& mat) const;
+    void toMatrix(TMat3& mat) const;
 
     union {
         struct {

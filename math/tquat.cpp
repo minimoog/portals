@@ -23,7 +23,8 @@
 // sets quat to identity
 //------------------------------------------------
 
-TQuat::TQuat() : x(0.0f), y(0.0f), z(0.0f), w(1.0f)
+TQuat::TQuat()
+    : x(0.0f), y(0.0f), z(0.0f), w(1.0f)
 {
 }
 
@@ -31,7 +32,8 @@ TQuat::TQuat() : x(0.0f), y(0.0f), z(0.0f), w(1.0f)
 // ctr
 //----------------------------------------------------------------------
 
-TQuat::TQuat(float x, float y, float z, float w) : x(x), y(y), z(z), w(w)
+TQuat::TQuat(float x, float y, float z, float w)
+    : x(x), y(y), z(z), w(w)
 {
 }
 
@@ -39,7 +41,8 @@ TQuat::TQuat(float x, float y, float z, float w) : x(x), y(y), z(z), w(w)
 // cp ctr
 //--------------------------------------------------------------------------
 
-TQuat::TQuat(const TQuat &quat) : x(quat.x), y(quat.y), z(quat.z), w(quat.w)
+TQuat::TQuat(const TQuat &quat)
+    : x(quat.x), y(quat.y), z(quat.z), w(quat.w)
 {
 }
 
@@ -50,7 +53,8 @@ TQuat::TQuat(const TQuat &quat) : x(quat.x), y(quat.y), z(quat.z), w(quat.w)
 TQuat::TQuat(const TVec3 &axis, float angle)
 {
     float len = axis.norm();
-    if(len){
+
+    if (len) {
         float invLen = 1.0f / len;
         float angle2 = angle / 2.0f;
         float scale = sinf(angle2) * invLen;
@@ -114,7 +118,8 @@ void TQuat::inverse()
 void TQuat::normalize()
 {
     float len = sqrtf(x * x + y * y + z * z + w * w);
-    if(len > 0){
+
+    if (len > 0) {
         float invLen = 1 / len;
         x *= invLen;
         y *= invLen;
@@ -153,15 +158,16 @@ void TQuat::fromMatrix(const TMat3& mat)
 
     int biggestIndex = 0;
     float biggest = w4Sqr1;
-    if(x4Sqr1 > biggest){
+
+    if (x4Sqr1 > biggest) {
         biggest = x4Sqr1;
         biggestIndex = 1;
     }
-    if(y4Sqr1 > biggest){
+    if (y4Sqr1 > biggest) {
         biggest = y4Sqr1;
         biggestIndex = 2;
     }
-    if(z4Sqr1 > biggest){
+    if (z4Sqr1 > biggest) {
         biggest = z4Sqr1;
         biggestIndex = 3;
     }
@@ -176,18 +182,21 @@ void TQuat::fromMatrix(const TMat3& mat)
         y = (mat.a20 - mat.a02) * mult;
         z = (mat.a01 - mat.a10) * mult;
         break;
+
     case 1:
         x = biggestVal;
         w = (mat.a12 - mat.a21) * mult;
         y = (mat.a01 + mat.a10) * mult;
         z = (mat.a20 + mat.a02) * mult;
         break;
+
     case 2:
         y = biggestVal;
         w = (mat.a20 - mat.a02) * mult;
         x = (mat.a01 + mat.a10) * mult;
         z = (mat.a12 + mat.a21) * mult;
         break;
+
     case 3:
         z = biggestVal;
         w = (mat.a01 - mat.a10) * mult;
@@ -201,7 +210,7 @@ void TQuat::fromMatrix(const TMat3& mat)
 // calc rot. matrix from quat
 //---------------------------------------------------------------
 
-void TQuat::ToMatrix(TMat3 &mat) const
+void TQuat::toMatrix(TMat3 &mat) const
 {
     float x2 = 2.0f * x;
     float y2 = 2.0f * y;
@@ -224,7 +233,7 @@ void TQuat::ToMatrix(TMat3 &mat) const
     mat.a12 = yz + wx;
     mat.a20 = xz + wy;
     mat.a21 = yz - wx;
-    mat.a22 = 1 - xx - yy;
+    mat.a22 = 1.0f - xx - yy;
 }
 
 //----------------------------------------------------------------

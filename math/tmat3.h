@@ -23,7 +23,6 @@
 
 struct TMat3
 {
-    //ctr
     TMat3() : a00(1.0f), a01(0.0f), a02(0.0f),
         a10(0.0f), a11(1.0f), a12(0.0f),
         a20(0.0f), a21(0.0f), a22(1.0f) {}
@@ -40,7 +39,7 @@ struct TMat3
           a20(f6), a21(f7), a22(f8) {}
 
     //returns column
-    const TVec3 col(const int i) const
+    const TVec3 column(const int i) const
     {
         return TVec3(mat_array[i], mat_array[i+3], mat_array[i+6]);
     }
